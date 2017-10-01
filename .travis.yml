@@ -24,6 +24,7 @@ deploy:
   - provider: npm
     email: $EMAIL_ADDRESS
     api_key: $NPM_API
+    skip_cleanup: true
     tag: dev
     on:
       branch: dev
