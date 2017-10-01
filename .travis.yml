@@ -10,6 +10,10 @@ script:
   - npm run docs
 after_success:
   - firebase deploy --non-interactive --token $FIREBASE_TOKEN
+before_deploy:
+  - if [ ${TRAVIS_BRANCH} == "dev" ]; then
+      node build/dev.js;
+    fi
 deploy:
   - provider: npm
     email: $EMAIL_ADDRESS
@@ -17,3 +21,9 @@ deploy:
     on:
       branch: master
       tags: true
+  - provider: npm
+    email: $EMAIL_ADDRESS
+    api_key: $NPM_API
+    tag: dev
+    on:
+      branch: dev
