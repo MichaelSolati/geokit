@@ -1,3 +1,4 @@
+sudo: required
 language: node_js
 node_js:
   - 8
@@ -5,10 +6,17 @@ branches:
   only:
     - master
 install:
+  - npm install -g firebase-tools
   - npm install
 script:
   - npm run build
+  - npm run docs
+after_success:
+  - firebase deploy --non-interactive --token $FIREBASE_TOKEN
 deploy:
-  provider: npm
-  email: $EMAIL_ADDRESS
-  api_key: $NPM_API
+  - provider: npm
+    email: $EMAIL_ADDRESS
+    api_key: $NPM_API
+    on:
+      branch: master
+      tags: true
