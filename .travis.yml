@@ -2,9 +2,6 @@ sudo: required
 language: node_js
 node_js:
   - 8
-branches:
-  only:
-    - master
 install:
   - npm install -g firebase-tools
   - npm install
