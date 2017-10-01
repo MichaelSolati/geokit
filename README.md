@@ -1,0 +1,2 @@
+# geokit [![Build Status](https://travis-ci.org/MichaelSolati/geokit.svg?branch=master)](https://travis-ci.org/MichaelSolati/geokit)
+An assortment of geolocation related tools, all packaged in one easy to use kit.
