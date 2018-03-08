@@ -7,6 +7,7 @@
   "scripts": {
     "build": "tsc",
     "docs": "typedoc --module node --target es5 --out docs/ src/",
+    "test": "mocha --reporter spec --require ts-node/register 'tests/**/*.test.ts'",
     "start": "npm run build",
     "release:major": "npm run build && changelog -M && git add . && git commit -m 'chore(release): major version release' && npm version major && git push origin && git push origin --tags",
     "release:minor": "npm run build && changelog -m && git add . && git commit -m 'chore(release): minor version release' && npm version minor && git push origin && git push origin --tags",
@@ -28,8 +29,13 @@
   },
   "homepage": "https://github.com/MichaelSolati/geokit#readme",
   "devDependencies": {
+    "@types/chai": "^4.1.2",
+    "@types/mocha": "^2.2.48",
+    "chai": "^4.1.2",
     "firebase-tools": "^3.12.0",
     "generate-changelog": "^1.5.0",
+    "mocha": "^5.0.4",
+    "ts-node": "^5.0.1",
     "typedoc": "^0.8.0",
     "typescript": "^2.5.3"
   }
