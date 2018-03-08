@@ -1,9 +1,31 @@
 import { LatLngLiteral } from './interfaces';
 
+/**
+ * A class for the Geokit.
+ */
 export class Geokit {
-  readonly _base32chars: string = '0123456789bcdefghjkmnpqrstuvwxyz';
+  /**
+   * Get Base 32 symbol from decimal chunk (5 bit binary value).
+   * @param value Decimal value of chunk (5 bit binary value).
+   * @returns Base 32 value.
+   */
+  private _base32(value: number): string {
+    return '0123456789bcdefghjkmnpqrstuvwxyz'.charAt(value);
+  }
 
+  /**
+   * Get the distance between two coordinates.
+   * @param start Starting coordinates.
+   * @param end Ending coordinates.
+   * @param unit Unit of distance returned, defaults to Km.
+   * @returns The distance between two coordinates.
+   */
   public distance(start: LatLngLiteral, end: LatLngLiteral, unit?: string): number {
+    const startValid: Error = this._validateCoordinates(start);
+    if (startValid instanceof Error) { throw new Error('Start coordinates: ' + startValid.message); }
+    const endValid: Error = this._validateCoordinates(end);
+    if (endValid instanceof Error) { throw new Error('End coordinates: ' + endValid.message); }
+
     const radius: number = (unit === 'miles') ? 3963 : 6371;
     const dLat: number = this._toRad(end.lat - start.lat);
     const dLon: number = this._toRad(end.lng - start.lng);
@@ -15,7 +37,16 @@ export class Geokit {
     return (radius * c);
   }
 
+  /**
+   * Get the geohash of a point.
+   * @param coordinates Coordinates to hash.
+   * @param precision Precision of hash desired, defaults to 10.
+   * @returns Geohash of point.
+   */
   public hash(coordinates: LatLngLiteral, precision: number = 10): string {
+    const valid: Error = this._validateCoordinates(coordinates);
+    if (valid instanceof Error) { throw valid; }
+
     let hash: string = '';
     let latRng: number[] = [-90, 90];
     let lngRng: number[] = [-180, 180];
@@ -29,17 +60,47 @@ export class Geokit {
         temp = (temp << 1) + this._getBit(coord, range);
         (coord > middle) ? range[0] = middle : range[1] = middle;
       }
-      hash += this._base32chars.charAt(temp);
+      hash += this._base32(temp);
     }
     return hash;
   }
 
+  /**
+   * Determine if coordinate is greater than midle of range in a bit representation.
+   * @param point Coordinates.
+   * @param range Range of coordinates to check.
+   * @returns Number representation if point is greater than the middle of the range.
+   */
   private _getBit(point: number, range: number[]): number {
     const middle: number = (range[0] + range[1]) / 2;
     return (middle > point) ? 0 : 1;
   }
 
+  /**
+   * Get radians from degrees.
+   * @param degrees Degrees.
+   * @returns Radians.
+   */
   private _toRad(degrees: number): number {
     return (degrees * Math.PI / 180);
   }
+
+  /**
+   * Validates user inputted coordinates.
+   * @param coordinates User inputted coordinates.
+   * @returns Error.
+   */
+  private _validateCoordinates(coordinates: LatLngLiteral): Error {
+    const error: string[] = [];
+    if (coordinates.lat > 90) { error.push('Your latitude is greater than 90°'); }
+    if (coordinates.lat < -90) { error.push('Your latitude is less than -90°'); }
+    if (coordinates.lng > 180) { error.push('Your longitude is greater than 180°'); }
+    if (coordinates.lng < -180) { error.push('Your longitude is less than -180°'); }
+    if (error.length !== 0) { return new Error(error.join(' ')); }
+  }
 }
+
+/**
+ * Instantiated Geokit object.
+ */
+export const geokit: Geokit = new Geokit();
