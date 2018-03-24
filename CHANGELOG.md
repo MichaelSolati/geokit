@@ -1,3 +1,9 @@
+#### 0.0.3 (2018-03-24)
+
+##### Refactors
+
+* split out validators and make functions static ([9e7cc083](https://github.com/MichaelSolati/geokit/commit/9e7cc083f21d6b153c393fe1ea71cc249e1c2681))
+
 #### 0.0.2 (2018-03-08)
 
 ##### Build System / Dependencies
