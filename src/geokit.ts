@@ -1,18 +1,10 @@
 import { LatLngLiteral } from './interfaces';
+import { base32, getBit, toRad, validateCoordinates } from './helpers';
 
 /**
  * A class for the Geokit.
  */
 export class Geokit {
-  /**
-   * Get Base 32 symbol from decimal chunk (5 bit binary value).
-   * @param value Decimal value of chunk (5 bit binary value).
-   * @returns Base 32 value.
-   */
-  private _base32(value: number): string {
-    return '0123456789bcdefghjkmnpqrstuvwxyz'.charAt(value);
-  }
-
   /**
    * Get the distance between two coordinates.
    * @param start Starting coordinates.
@@ -20,17 +12,17 @@ export class Geokit {
    * @param unit Unit of distance returned, defaults to Km.
    * @returns The distance between two coordinates.
    */
-  public distance(start: LatLngLiteral, end: LatLngLiteral, unit?: string): number {
-    const startValid: Error = this._validateCoordinates(start);
+  static distance(start: LatLngLiteral, end: LatLngLiteral, unit?: string): number {
+    const startValid: Error = validateCoordinates(start);
     if (startValid instanceof Error) { throw new Error('Start coordinates: ' + startValid.message); }
-    const endValid: Error = this._validateCoordinates(end);
+    const endValid: Error = validateCoordinates(end);
     if (endValid instanceof Error) { throw new Error('End coordinates: ' + endValid.message); }
 
     const radius: number = (unit === 'miles') ? 3963 : 6371;
-    const dLat: number = this._toRad(end.lat - start.lat);
-    const dLon: number = this._toRad(end.lng - start.lng);
-    const lat1: number = this._toRad(start.lat);
-    const lat2: number = this._toRad(end.lat);
+    const dLat: number = toRad(end.lat - start.lat);
+    const dLon: number = toRad(end.lng - start.lng);
+    const lat1: number = toRad(start.lat);
+    const lat2: number = toRad(end.lat);
     const a: number = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
     const c: number = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
@@ -43,8 +35,8 @@ export class Geokit {
    * @param precision Precision of hash desired, defaults to 10.
    * @returns Geohash of point.
    */
-  public hash(coordinates: LatLngLiteral, precision: number = 10): string {
-    const valid: Error = this._validateCoordinates(coordinates);
+  static hash(coordinates: LatLngLiteral, precision: number = 10): string {
+    const valid: Error = validateCoordinates(coordinates);
     if (valid instanceof Error) { throw valid; }
 
     let hash: string = '';
@@ -57,50 +49,13 @@ export class Geokit {
         let coord: number = (even) ? coordinates.lng : coordinates.lat;
         const range: number[] = (even) ? lngRng : latRng;
         let middle: number = (range[0] + range[1]) / 2;
-        temp = (temp << 1) + this._getBit(coord, range);
+        temp = (temp << 1) + getBit(coord, range);
         (coord > middle) ? range[0] = middle : range[1] = middle;
       }
-      hash += this._base32(temp);
+      hash += base32(temp);
     }
     return hash;
   }
 
-  /**
-   * Determine if coordinate is greater than midle of range in a bit representation.
-   * @param point Coordinates.
-   * @param range Range of coordinates to check.
-   * @returns Number representation if point is greater than the middle of the range.
-   */
-  private _getBit(point: number, range: number[]): number {
-    const middle: number = (range[0] + range[1]) / 2;
-    return (middle > point) ? 0 : 1;
-  }
 
-  /**
-   * Get radians from degrees.
-   * @param degrees Degrees.
-   * @returns Radians.
-   */
-  private _toRad(degrees: number): number {
-    return (degrees * Math.PI / 180);
-  }
-
-  /**
-   * Validates user inputted coordinates.
-   * @param coordinates User inputted coordinates.
-   * @returns Error.
-   */
-  private _validateCoordinates(coordinates: LatLngLiteral): Error {
-    const error: string[] = [];
-    if (coordinates.lat > 90) { error.push('Your latitude is greater than 90°'); }
-    if (coordinates.lat < -90) { error.push('Your latitude is less than -90°'); }
-    if (coordinates.lng > 180) { error.push('Your longitude is greater than 180°'); }
-    if (coordinates.lng < -180) { error.push('Your longitude is less than -180°'); }
-    if (error.length !== 0) { return new Error(error.join(' ')); }
-  }
 }
-
-/**
- * Instantiated Geokit object.
- */
-export const geokit: Geokit = new Geokit();

@@ -11,21 +11,11 @@ after_success:
   - npm run build
   - npm run docs
   - firebase deploy --non-interactive --token $FIREBASE_TOKEN
-before_deploy:
-  - if [ ${TRAVIS_BRANCH} == "dev" ]; then
-      node build/dev.js;
-    fi
 deploy:
   - provider: npm
     email: $EMAIL_ADDRESS
     api_key: $NPM_API
+    skip_cleanup: true
     on:
       branch: master
       tags: true
-  - provider: npm
-    email: $EMAIL_ADDRESS
-    api_key: $NPM_API
-    skip_cleanup: true
-    tag: dev
-    on:
-      branch: dev
