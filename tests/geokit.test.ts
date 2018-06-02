@@ -29,4 +29,12 @@ describe('Geokit Class', () => {
   it('Hash coordinates 91, 0 with should throw an Error', () => {
     expect(() => Geokit.hash({ lat: 91,  lng: 0 })).to.throw(null, 'Your latitude is greater than 90°');
   });
+
+  it('Hash \'drk4urzw2c\' should yield coordinates 41.30830138921738, -72.9278951883316', () => {
+    expect(Geokit.decodeHash('drk4urzw2c')).to.deep.equal({ lat: 41.30830138921738,  lng: -72.9278951883316 });
+  });
+
+  it('Hash \'r3gx2f77b\' should yield coordinates -33.86881113052368, 151.2093186378479', () => {
+    expect(Geokit.decodeHash('r3gx2f77b')).to.deep.equal({ lat: -33.86881113052368,  lng: 151.2093186378479 });
+  });
 });

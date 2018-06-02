@@ -10,6 +10,15 @@ export function base32(value: number): string {
 }
 
 /**
+ * Get decimal chunk (5 bit binary value) from Base 32 character.
+ * @param value Base 32 character.
+ * @returns Decimal value of chunk (5 bit binary value).
+ */
+export function decimalChunk(value: string): number {
+  return '0123456789bcdefghjkmnpqrstuvwxyz'.indexOf(value.toLowerCase());
+}
+
+/**
   * Determine if coordinate is greater than midle of range in a bit representation.
   * @param point Coordinates.
   * @param range Range of coordinates to check.

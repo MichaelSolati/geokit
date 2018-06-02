@@ -1,5 +1,5 @@
 import { LatLngLiteral } from './interfaces';
-import { base32, getBit, toRad, validateCoordinates } from './helpers';
+import { base32, decimalChunk, getBit, toRad, validateCoordinates } from './helpers';
 
 /**
  * A class for the Geokit.
@@ -18,7 +18,7 @@ export class Geokit {
     const endValid: Error = validateCoordinates(end);
     if (endValid instanceof Error) { throw new Error('End coordinates: ' + endValid.message); }
 
-    const radius: number = (unit === 'miles') ? 3963 : 6371;
+    const radius: number = (unit.toLowerCase() === 'miles') ? 3963 : 6371;
     const dLat: number = toRad(end.lat - start.lat);
     const dLon: number = toRad(end.lng - start.lng);
     const lat1: number = toRad(start.lat);
@@ -40,22 +40,47 @@ export class Geokit {
     if (valid instanceof Error) { throw valid; }
 
     let hash: string = '';
-    let latRng: number[] = [-90, 90];
-    let lngRng: number[] = [-180, 180];
+    const latRng: number[] = [-90, 90];
+    const lngRng: number[] = [-180, 180];
+
     while (hash.length < precision) {
       let temp: number = 0;
       for (let i: number = 0; i < 5; i++) {
-        let even: boolean = (((hash.length * 5) + i) % 2) == 0;
-        let coord: number = (even) ? coordinates.lng : coordinates.lat;
+        const even: boolean = (((hash.length * 5) + i) % 2) == 0;
+        const coord: number = (even) ? coordinates.lng : coordinates.lat;
         const range: number[] = (even) ? lngRng : latRng;
-        let middle: number = (range[0] + range[1]) / 2;
+        const middle: number = (range[0] + range[1]) / 2;
         temp = (temp << 1) + getBit(coord, range);
         (coord > middle) ? range[0] = middle : range[1] = middle;
       }
       hash += base32(temp);
     }
+
     return hash;
   }
 
+  /**
+   * Decodes a Geohash into a LatLngLiteral.
+   * @param hash Geohash string.
+   * @returns Coordinates to hash.
+   */
+  static decodeHash(hash: string): LatLngLiteral {
+    let even: boolean = true;
+    const latRng: number[] = [-90, 90];
+    const lngRng: number[] = [-180, 180];
+    const hashChars: string[] = hash.split('');
 
+    while (hashChars.length) {
+      const chunk: number = decimalChunk(hashChars.shift());
+      for (let i = 0; i < 5; i++) {
+        const mask = [16, 8, 4, 2, 1][i];
+        const range: number[] = (even) ? lngRng : latRng;
+        const middle: number = (range[0] + range[1]) / 2;
+        range[((chunk & mask) ? 0 : 1)] = middle;
+        even = !even;
+      }
+    }
+
+    return { lat: ((latRng[0] + latRng[1]) / 2), lng: ((lngRng[0] + lngRng[1]) / 2) };
+  }
 }
