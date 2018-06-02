@@ -1,3 +1,9 @@
+#### 0.1.1 (2018-06-02)
+
+##### Bug Fixes
+
+* **distance:**  set default unit so  doesn't fail ([0001a29e](https://github.com/MichaelSolati/geokit/commit/0001a29e507ca90f45959fcf97d0f79d583e8ef5))
+
 ### 0.1.0 (2018-06-02)
 
 ##### Chores
