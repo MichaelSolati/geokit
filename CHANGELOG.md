@@ -1,3 +1,13 @@
+### 0.1.0 (2018-06-02)
+
+##### Chores
+
+*  update dependencies ([af42f559](https://github.com/MichaelSolati/geokit/commit/af42f5594351d91500ac9b7331535101b9e880d5))
+
+##### New Features
+
+* **decodeHash:**  add functionality to decode a geohash ([5922a2f0](https://github.com/MichaelSolati/geokit/commit/5922a2f06851f8fb3885b2046d0ac4d90f207cb9))
+
 #### 0.0.3 (2018-03-24)
 
 ##### Refactors
