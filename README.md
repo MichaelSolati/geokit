@@ -7,7 +7,7 @@ An assortment of geolocation related tools, all packaged in one easy to use kit.
 
 Static method which returns the distance, in kilometers, between `start` and `end`.
 
-`start` and `end` must be LatLngLiterals `{ lat: 0, lng: 0}`.
+`start` and `end` must be LatLngLiterals `{ lat: 0, lng: 0 }`.
 
 There exists an optional third argument, where if the string `'miles'` is inputted, the result returned will be in miles rather than kilometers.
 
@@ -24,7 +24,7 @@ const distance: number = Geokit.distance(location1, location2, 'miles');  // dis
 
 Static method which generates the geohash of a point.
 
-`coordinates` must be LatLngLiterals `{ lat: 0, lng: 0}`.
+`coordinates` must be LatLngLiterals `{ lat: 0, lng: 0 }`.
 
 There exists an optional second argument of precision, where the hash produced will be as many characters as the number inputted. It defaults to 10.
 

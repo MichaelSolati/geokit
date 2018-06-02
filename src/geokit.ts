@@ -12,7 +12,7 @@ export class Geokit {
    * @param unit Unit of distance returned, defaults to Km.
    * @returns The distance between two coordinates.
    */
-  static distance(start: LatLngLiteral, end: LatLngLiteral, unit?: string): number {
+  static distance(start: LatLngLiteral, end: LatLngLiteral, unit: string = 'km'): number {
     const startValid: Error = validateCoordinates(start);
     if (startValid instanceof Error) { throw new Error('Start coordinates: ' + startValid.message); }
     const endValid: Error = validateCoordinates(end);
