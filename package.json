@@ -1,6 +1,6 @@
 {
   "name": "geokit",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "An assortment of geolocation related tools, all packaged in one easy to use kit.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
