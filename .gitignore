@@ -1,6 +1,7 @@
 /dist
 /docs
 /node_modules
+/.rpt2_cache
 npm-debug.log
 .DS_Store
 .git
