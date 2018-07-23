@@ -1,0 +1,1 @@
+{"code":"export { Geokit } from './geokit';\r\n","dts":{"name":"/Users/michaelsolati/Documents/workspace/geokit/index.d.ts","text":"export { Geokit } from './geokit';\r\nexport * from './interfaces';\r\n"}}

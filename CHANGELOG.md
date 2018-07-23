@@ -1,3 +1,9 @@
+#### 0.1.2 (2018-07-23)
+
+##### Build System / Dependencies
+
+*  change build process to rollup ([42322971](https://github.com/MichaelSolati/geokit/commit/42322971fd54fbba434d4848390fd0dcdd20dfba))
+
 #### 0.1.1 (2018-06-02)
 
 ##### Bug Fixes
