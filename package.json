@@ -1,6 +1,6 @@
 {
   "name": "geokit",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "An assortment of geolocation related tools, all packaged in one easy to use kit.",
   "scripts": {
     "build": "rm -rf ./dist && rollup -c",
