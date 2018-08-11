@@ -1,3 +1,15 @@
+#### 0.1.3 (2018-08-11)
+
+##### Build System / Dependencies
+
+* **rollup:**  copy interfaces into dist during build ([7364c28b](https://github.com/MichaelSolati/geokit/commit/7364c28b9207d65e799b2e50acf6d342ff1e447c))
+* **coveralls:**  add coveralls to travis build process ([e2f932f1](https://github.com/MichaelSolati/geokit/commit/e2f932f18d56d7a29c32d0fbec2f459d282a8f4a))
+
+##### Chores
+
+*  update dependencies ([51aa3f71](https://github.com/MichaelSolati/geokit/commit/51aa3f7112449d90804a5c2d8379bd54fb758043))
+*  gitignore `.rpt2_cache` ([306a8e95](https://github.com/MichaelSolati/geokit/commit/306a8e957fc59cbf9e6909ccd2e2e239ea7064d1))
+
 #### 0.1.2 (2018-07-23)
 
 ##### Build System / Dependencies
