@@ -13,6 +13,7 @@
     "prepare": "npm run build"
   },
   "main": "dist/index.cjs.js",
+  "browser": "dist/geokit.js",
   "module": "dist/index.esm.js",
   "typings": "dist/index.d.ts",
   "author": "Michael Solati mkslt04@gmail.com",

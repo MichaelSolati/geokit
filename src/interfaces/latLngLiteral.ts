@@ -1,4 +1,4 @@
 export interface LatLngLiteral {
-    lat: number;
-    lng: number;
+  lat: number;
+  lng: number;
 }
