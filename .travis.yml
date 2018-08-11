@@ -8,8 +8,8 @@ install:
 script:
   - npm run test
 after_success:
+  - npm run coverage
   - npm run build
-  - npm run docs
   - firebase deploy --non-interactive --token $FIREBASE_TOKEN
 deploy:
   - provider: npm

@@ -1,7 +1,11 @@
-/dist
-/docs
-/node_modules
-/.rpt2_cache
-npm-debug.log
+# Folders
+.nyc_output/
+.rpt2_cache/
+coverage/
+dist/
+docs/
+node_modules/
+
+# Files
 .DS_Store
-.git
+npm-debug.log

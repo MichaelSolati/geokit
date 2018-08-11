@@ -1,4 +1,7 @@
-# Geokit [![Build Status](https://travis-ci.org/MichaelSolati/geokit.svg?branch=master)](https://travis-ci.org/MichaelSolati/geokit) [![npm version](https://badge.fury.io/js/geokit.svg)](https://badge.fury.io/js/geokit)
+# geokit
+
+[![Build Status](https://travis-ci.org/MichaelSolati/geokit.svg?branch=master)](https://travis-ci.org/MichaelSolati/geokit) [![npm version](https://badge.fury.io/js/geokit.svg)](https://badge.fury.io/js/geokit) [![Coverage Status](https://coveralls.io/repos/github/MichaelSolati/geokit/badge.svg?branch=master)](https://coveralls.io/github/MichaelSolati/geokit?branch=master)
+
 An assortment of geolocation related tools, all packaged in one easy to use kit.
 
 ## Methods

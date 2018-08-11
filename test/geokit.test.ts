@@ -1,7 +1,5 @@
 import { Geokit } from '../src/geokit';
-import { LatLngLiteral } from '../src/interfaces';
 
-import * as mocha from 'mocha';
 import * as chai from 'chai';
 
 const expect = chai.expect;

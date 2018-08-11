@@ -5,7 +5,8 @@
   "scripts": {
     "build": "rm -rf ./dist && rollup -c",
     "docs": "typedoc --module node --target es5 --out docs/ src/",
-    "test": "mocha --reporter spec --require ts-node/register 'tests/**/*.test.ts'",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "test": "nyc --reporter=html --reporter=text mocha",
     "release:major": "npm run build && changelog -M && git add . && git commit -m 'chore(release): major version release' && npm version major && git push origin && git push origin --tags",
     "release:minor": "npm run build && changelog -m && git add . && git commit -m 'chore(release): minor version release' && npm version minor && git push origin && git push origin --tags",
     "release:patch": "npm run build && changelog -p && git add . && git commit -m 'chore(release): patch version release' && npm version patch && git push origin && git push origin --tags",
@@ -29,7 +30,8 @@
     "geo",
     "coordinates",
     "geohash",
-    "toolkit"
+    "toolkit",
+    "distance"
   ],
   "files": [
     "dist/**",
@@ -42,16 +44,34 @@
     "@types/chai": "^4.1.4",
     "@types/mocha": "^5.2.5",
     "chai": "^4.1.2",
+    "coveralls": "^3.0.2",
     "firebase-tools": "^4.0.3",
     "generate-changelog": "^1.7.1",
     "mocha": "^5.2.0",
+    "nyc": "^12.0.2",
     "rollup": "^0.64.1",
     "rollup-plugin-commonjs": "^9.1.5",
+    "rollup-plugin-copy": "^0.2.3",
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-typescript2": "^0.16.1",
     "rollup-plugin-uglify": "^4.0.0",
     "ts-node": "^7.0.0",
     "typedoc": "^0.11.1",
     "typescript": "^3.0.1"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "src/interfaces.ts"
+    ],
+    "reporter": [
+      "html"
+    ],
+    "all": true
   }
 }
