@@ -10,10 +10,7 @@ const plugins = [
   typescript({
     typescript: require('typescript')
   }),
-  commonjs(),
-  copy({
-    'src/interfaces': 'dist/interfaces'
-  })
+  commonjs()
 ];
 
 const completeBuilds = [{
@@ -37,7 +34,13 @@ const completeBuilds = [{
       name: 'window',
       extend: true
     },
-    plugins: [...plugins, uglify()]
+    plugins: [
+      ...plugins,
+      uglify(),
+      copy({
+        'src/interfaces': 'dist/interfaces'
+      })
+    ]
   },
 ];
 
