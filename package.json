@@ -48,7 +48,7 @@
     "coveralls": "^3.0.2",
     "firebase-tools": "^5.0.1",
     "generate-changelog": "^1.7.1",
-    "mocha": "^5.2.0",
+    "mocha": "^6.1.4",
     "nyc": "^13.0.1",
     "rollup": "^0.66.6",
     "rollup-plugin-commonjs": "^9.2.0",
