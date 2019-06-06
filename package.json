@@ -46,7 +46,7 @@
     "@types/mocha": "^5.2.5",
     "chai": "^4.2.0",
     "coveralls": "^3.0.2",
-    "firebase-tools": "^5.0.1",
+    "firebase-tools": "^6.11.0",
     "generate-changelog": "^1.7.1",
     "mocha": "^6.1.4",
     "nyc": "^13.0.1",
