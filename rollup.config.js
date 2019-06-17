@@ -1,17 +1,21 @@
-import commonjs from 'rollup-plugin-commonjs';
-import copy from 'rollup-plugin-copy';
-import resolveModule from 'rollup-plugin-node-resolve';
+import copier from 'rollup-plugin-copier';
 import typescript from 'rollup-plugin-typescript2';
 import { uglify } from 'rollup-plugin-uglify';
 import pkg from './package.json';
 
 const plugins = [
-  resolveModule(),
   typescript({
     typescript: require('typescript')
-  }),
-  commonjs()
+  })
 ];
+
+const copy = copier({
+  items: [{
+    src: 'src/definitions.ts',
+    dest: 'dist/definitions.ts',
+    createPath: true
+  }]
+});
 
 const completeBuilds = [{
     input: 'src/index.ts',
@@ -37,9 +41,7 @@ const completeBuilds = [{
     plugins: [
       ...plugins,
       uglify(),
-      copy({
-        'src/interfaces': 'dist/interfaces'
-      })
+      copy
     ]
   },
 ];

@@ -1,4 +1,4 @@
-import { LatLngLiteral } from './interfaces';
+import { LatLngLiteral } from './definitions';
 
 /**
  * Get Base 32 symbol from decimal chunk (5 bit binary value).

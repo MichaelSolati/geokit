@@ -1,4 +1,4 @@
-import { LatLngLiteral } from './interfaces';
+import { LatLngLiteral } from './definitions';
 import { base32, decimalChunk, getBit, toRad, validateCoordinates } from './helpers';
 
 /**
