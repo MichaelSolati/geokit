@@ -16,7 +16,7 @@
   "browser": "dist/geokit.js",
   "module": "dist/index.esm.js",
   "typings": "dist/index.d.ts",
-  "author": "Michael Solati mkslt04@gmail.com",
+  "author": "Michael Solati <mkslt04@gmail.com>",
   "homepage": "https://github.com/MichaelSolati/geokit",
   "repository": {
     "type": "git",
