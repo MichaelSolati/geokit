@@ -42,21 +42,21 @@
     "package.json"
   ],
   "devDependencies": {
-    "@types/chai": "4.x.x",
-    "@types/mocha": "5.x.x",
-    "chai": "4.x.x",
-    "coveralls": "3.x.x",
-    "firebase-tools": "7.x.x",
-    "generate-changelog": "1.x.x",
-    "mocha": "6.x.x",
-    "nyc": "14.x.x",
-    "rollup": "1.x.x",
-    "rollup-plugin-copier": "1.x.x",
-    "rollup-plugin-typescript2": "0.x.x",
-    "rollup-plugin-uglify": "6.x.x",
-    "ts-node": "8.x.x",
-    "typedoc": "0.x.x",
-    "typescript": "3.x.x"
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "chai": "^4.2.0",
+    "coveralls": "^3.1.0",
+    "firebase-tools": "^8.4.2",
+    "generate-changelog": "^1.8.0",
+    "mocha": "^7.2.0",
+    "nyc": "^15.1.0",
+    "rollup": "^2.15.0",
+    "rollup-plugin-copier": "^1.1.0",
+    "rollup-plugin-typescript2": "^0.27.1",
+    "rollup-plugin-uglify": "^6.0.4",
+    "ts-node": "^8.10.2",
+    "typedoc": "^0.17.7",
+    "typescript": "^3.9.5"
   },
   "nyc": {
     "extension": [
