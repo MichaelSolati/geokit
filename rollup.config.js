@@ -1,21 +1,17 @@
-import copier from 'rollup-plugin-copier';
+import {terser} from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
-import { uglify } from 'rollup-plugin-uglify';
+
 import pkg from './package.json';
 
 const plugins = [
   typescript({
-    typescript: require('typescript')
-  })
+    tsconfigOverride: {
+      compilerOptions: {
+        module: 'ESNext',
+      },
+    },
+  }),
 ];
-
-const copy = copier({
-  items: [{
-    src: 'src/definitions.ts',
-    dest: 'dist/definitions.ts',
-    createPath: true
-  }]
-});
 
 const completeBuilds = [{
     input: 'src/index.ts',
@@ -36,12 +32,11 @@ const completeBuilds = [{
       file: pkg.browser,
       format: 'umd',
       name: 'window',
-      extend: true
+      extend: true,
     },
     plugins: [
       ...plugins,
-      uglify(),
-      copy
+      terser()
     ]
   },
 ];
