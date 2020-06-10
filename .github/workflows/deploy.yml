@@ -1,0 +1,64 @@
+name: Deploy
+on:
+  push:
+    tags:
+      - v*
+env:
+  FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+  NPM_EMAIL: ${{ secrets.NPM_EMAIL }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+jobs:
+  deploy_to_npm:
+    name: Deploy to NPM
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+          registry-url: https://registry.npmjs.org/
+      - name: Register Token
+        run: |
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > /home/runner/work/_temp/.npmrc
+          echo "_auth=$NPM_TOKEN" >>  /home/runner/work/_temp/.npmrc
+          echo "email=$NPM_EMAIL" >>  /home/runner/work/_temp/.npmrc
+          echo "always-auth=true" >>  /home/runner/work/_temp/.npmrc
+      - name: NPM Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install
+        run: npm install --ignore-scripts
+      - name: Build
+        run: npm run build
+      - name: Deploy
+        run: npm publish
+  deploy_to_firebase:
+    name: Deploy to Firebase
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: NPM Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install
+        run: npm install --ignore-scripts
+      - name: Install Firebase Tools
+        run: npm i -g firebase-tools
+      - name: Deploy
+        run: firebase deploy --non-interactive --token $FIREBASE_TOKEN
+      

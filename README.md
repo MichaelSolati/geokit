@@ -1,6 +1,6 @@
 # geokit
 
-[![Build Status](https://travis-ci.org/MichaelSolati/geokit.svg?branch=master)](https://travis-ci.org/MichaelSolati/geokit) [![npm version](https://badge.fury.io/js/geokit.svg)](https://badge.fury.io/js/geokit) [![Coverage Status](https://coveralls.io/repos/github/MichaelSolati/geokit/badge.svg?branch=master)](https://coveralls.io/github/MichaelSolati/geokit?branch=master)
+[![npm](https://img.shields.io/npm/v/geokit)](https://www.npmjs.com/package/geokit) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/geokit)](https://bundlephobia.com/result?p=geokit) [![Lint and Test](https://github.com/MichaelSolati/geokit/workflows/Lint%20and%20Test/badge.svg?branch=master)](https://github.com/MichaelSolati/geokit/actions?query=workflow%3A%22Lint+and+Test%22) [![Coveralls github](https://img.shields.io/coveralls/github/MichaelSolati/geokit)](https://coveralls.io/github/MichaelSolati/geokit) [![David](https://img.shields.io/david/michaelsolati/geokit)](https://david-dm.org/michaelsolati/geokit) [![GitHub stars](https://img.shields.io/github/stars/MichaelSolati/geokit)](https://github.com/MichaelSolati/geokit/stargazers) [![GitHub forks](https://img.shields.io/github/forks/MichaelSolati/geokit)](https://github.com/MichaelSolati/geokit/network/members)
 
 An assortment of geolocation related tools, all packaged in one easy to use kit.
 
