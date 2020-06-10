@@ -1,4 +1,4 @@
-import { LatLngLiteral } from './definitions';
+import {LatLngLiteral} from './definitions';
 
 /**
  * Get Base 32 symbol from decimal chunk (5 bit binary value).
@@ -19,14 +19,14 @@ export function decimalChunk(value: string): number {
 }
 
 /**
-  * Determine if coordinate is greater than midle of range in a bit representation.
-  * @param point Coordinates.
-  * @param range Range of coordinates to check.
-  * @returns Number representation if point is greater than the middle of the range.
-  */
+ * Determine if coordinate is greater than midle of range in a bit representation.
+ * @param point Coordinates.
+ * @param range Range of coordinates to check.
+ * @returns Number representation if point is greater than the middle of the range.
+ */
 export function getBit(point: number, range: number[]): number {
   const middle: number = (range[0] + range[1]) / 2;
-  return (middle > point) ? 0 : 1;
+  return middle > point ? 0 : 1;
 }
 
 /**
@@ -35,7 +35,7 @@ export function getBit(point: number, range: number[]): number {
  * @returns Radians.
  */
 export function toRad(degrees: number): number {
-  return (degrees * Math.PI / 180);
+  return (degrees * Math.PI) / 180;
 }
 
 /**
@@ -43,11 +43,21 @@ export function toRad(degrees: number): number {
  * @param coordinates User inputted coordinates.
  * @returns Error.
  */
-export function validateCoordinates(coordinates: LatLngLiteral): Error {
+export function validateCoordinates(coordinates: LatLngLiteral): Error | void {
   const error: string[] = [];
-  if (coordinates.lat > 90) { error.push('Your latitude is greater than 90°'); }
-  if (coordinates.lat < -90) { error.push('Your latitude is less than -90°'); }
-  if (coordinates.lng > 180) { error.push('Your longitude is greater than 180°'); }
-  if (coordinates.lng < -180) { error.push('Your longitude is less than -180°'); }
-  if (error.length !== 0) { return new Error(error.join(' ')); }
+  if (coordinates.lat > 90) {
+    error.push('Your latitude is greater than 90°');
+  }
+  if (coordinates.lat < -90) {
+    error.push('Your latitude is less than -90°');
+  }
+  if (coordinates.lng > 180) {
+    error.push('Your longitude is greater than 180°');
+  }
+  if (coordinates.lng < -180) {
+    error.push('Your longitude is less than -180°');
+  }
+  if (error.length !== 0) {
+    return new Error(error.join(' '));
+  }
 }

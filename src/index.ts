@@ -1,2 +1,2 @@
-export { Geokit } from './geokit';
+export {Geokit} from './geokit';
 export * from './definitions';
