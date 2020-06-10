@@ -6,7 +6,7 @@
     "build": "rm -rf ./dist && rollup -c",
     "docs": "typedoc --module node --target es5 --out docs/ src/",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "test": "nyc --reporter=html --reporter=text mocha",
+    "test": "nyc --reporter=html --reporter=text mocha --package package.json --exit",
     "lint": "gts check",
     "release:major": "npm run build && changelog -M && git add . && git commit -m 'chore(release): major version release' && npm version major && git push origin && git push origin --tags",
     "release:minor": "npm run build && changelog -m && git add . && git commit -m 'chore(release): minor version release' && npm version minor && git push origin && git push origin --tags",
@@ -60,6 +60,15 @@
     "typedoc": "^0.17.7",
     "typescript": "^3.9.5",
     "@types/node": "^13.11.1"
+  },
+  "mocha": {
+    "extension": [
+      "ts"
+    ],
+    "reporter": "spec",
+    "require": [
+      "ts-node/register"
+    ]
   },
   "nyc": {
     "extension": [
