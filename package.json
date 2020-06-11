@@ -4,7 +4,7 @@
   "description": "An assortment of geolocation related tools, all packaged in one easy to use kit.",
   "scripts": {
     "build": "rm -rf ./dist && rollup -c",
-    "docs": "typedoc --module node --target es5 --out docs/ src/",
+    "docs": "typedoc --out docs/ src/",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "test": "nyc --reporter=html --reporter=text mocha --package package.json --exit",
     "lint": "gts check",
