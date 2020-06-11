@@ -1,3 +1,20 @@
+#### 0.1.5 (2020-06-11)
+
+##### Chores
+
+*  update mocha options ([b25ecc3d](https://github.com/MichaelSolati/geokit/commit/b25ecc3da93f4db85681ece3a58f7da8da66e60c))
+*  update dependencies ([a0a2f55c](https://github.com/MichaelSolati/geokit/commit/a0a2f55c6aaf4a9397967ed4ea70bb3672e1fde6))
+*  move ci to GitHub Actions ([726bc2ab](https://github.com/MichaelSolati/geokit/commit/726bc2ab1a1c237c8014357c504d1b4ef9e7099b))
+*  update dependencies ([20c21839](https://github.com/MichaelSolati/geokit/commit/20c218393ddcddbb7717d7035f0967b11c310018))
+
+##### Refactors
+
+*  update and fix build ([4a8d63c0](https://github.com/MichaelSolati/geokit/commit/4a8d63c0580e316fc7a0d6fee50bf29a89dfafee))
+
+##### Tests
+
+*  add linting ([b8b92263](https://github.com/MichaelSolati/geokit/commit/b8b92263069ef89b0cf8f6be2900f18d3ce626b1))
+
 #### 0.1.4 (2019-06-17)
 
 ##### Build System / Dependencies
