@@ -3,42 +3,38 @@ import typescript from 'rollup-plugin-typescript2';
 
 import pkg from './package.json';
 
-const plugins = [
-  typescript({
-    tsconfigOverride: {
-      compilerOptions: {
-        module: 'ESNext',
-      },
+const ts = typescript({
+  tsconfigOverride: {
+    compilerOptions: {
+      module: 'ESNext',
     },
-  }),
-];
+  },
+});
 
-const completeBuilds = [{
+const completeBuilds = [
+  {
     input: 'src/index.ts',
-    output: [{
+    output: [
+      {
         file: pkg.main,
-        format: 'cjs'
+        format: 'cjs',
       },
       {
         file: pkg.module,
-        format: 'es'
-      }
+        format: 'es',
+      },
     ],
-    plugins
+    plugins: [ts],
   },
   {
     input: 'src/index.ts',
     output: {
       file: pkg.browser,
       format: 'umd',
-      name: 'window',
-      extend: true,
+      name: 'Geokit',
     },
-    plugins: [
-      ...plugins,
-      terser()
-    ]
+    plugins: [ts, terser()],
   },
 ];
 
-export default [...completeBuilds];
+export default completeBuilds;
