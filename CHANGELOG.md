@@ -1,3 +1,21 @@
+#### 1.0.1 (2020-06-21)
+
+##### Build System / Dependencies
+
+*  change firebase hosting project ([ef615a7f](https://github.com/MichaelSolati/geokit/commit/ef615a7f10612dab39cce7e8e8f751dc751f5cc3))
+
+##### Chores
+
+*  update `homepage` in `package.json` ([7a6371c1](https://github.com/MichaelSolati/geokit/commit/7a6371c1d62b65df2a711f7830477c94856345a9))
+
+##### Documentation Changes
+
+*  update docs for functions ([a1a4a243](https://github.com/MichaelSolati/geokit/commit/a1a4a2438a0e7d7a23feb50b9aa66306fb097551))
+
+##### New Features
+
+*  add issue template ([58097c96](https://github.com/MichaelSolati/geokit/commit/58097c96c10f285232d63ed9f8b2d3e9577017bc))
+
 ## 1.0.0 (2020-06-21)
 
 ##### New Features
