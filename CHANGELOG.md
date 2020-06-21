@@ -1,3 +1,17 @@
+## 1.0.0 (2020-06-21)
+
+##### New Features
+
+* **validateHash:**  add geohash validation ([0bb5cd47](https://github.com/MichaelSolati/geokit/commit/0bb5cd47d8c39cdc48846e4fb5fe64631c5f7e73))
+
+##### Bug Fixes
+
+*  fix docs build and deploy ([97b77f14](https://github.com/MichaelSolati/geokit/commit/97b77f146de164c3e898ea0dc82b0305c2b781db))
+
+##### Refactors
+
+*  break out class into functions ([3f662fe0](https://github.com/MichaelSolati/geokit/commit/3f662fe0efc03ce292a1ab40121e1e50bfba49a1))
+
 #### 0.1.5 (2020-06-11)
 
 ##### Chores
