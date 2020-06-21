@@ -1,12 +1,15 @@
 import {LatLngLiteral} from './definitions';
 
+// Characters used in location geohashes
+export const BASE32 = '0123456789bcdefghjkmnpqrstuvwxyz';
+
 /**
  * Get Base 32 symbol from decimal chunk (5 bit binary value).
  * @param value Decimal value of chunk (5 bit binary value).
  * @returns Base 32 value.
  */
 export function base32(value: number): string {
-  return '0123456789bcdefghjkmnpqrstuvwxyz'.charAt(value);
+  return BASE32.charAt(value);
 }
 
 /**

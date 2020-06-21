@@ -1,5 +1,6 @@
 import {LatLngLiteral} from './definitions';
 import {
+  BASE32,
   base32,
   decimalChunk,
   getBit,
@@ -82,6 +83,7 @@ export class Geokit {
    * @returns Coordinates to hash.
    */
   static decodeHash(hash: string): LatLngLiteral {
+    this.validateHash(hash);
     let even = true;
     const latRng: number[] = [-90, 90];
     const lngRng: number[] = [-180, 180];
@@ -99,5 +101,34 @@ export class Geokit {
     }
 
     return {lat: (latRng[0] + latRng[1]) / 2, lng: (lngRng[0] + lngRng[1]) / 2};
+  }
+
+  /**
+   * Validates a Geohash and returns a boolean if valid, or throws an error if invalid.
+   *
+   * @param geohash The geohash to be validated.
+   * @param flag Tells function to send up boolean if valid instead of throwing an error.
+   * @returns Boolean if Geohash is valid.
+   */
+  static validateHash(geohash: string, flag = false): boolean {
+    let error;
+
+    if (typeof geohash !== 'string') {
+      error = 'geohash must be a string';
+    } else if (geohash.length === 0) {
+      error = 'geohash cannot be the empty string';
+    } else {
+      for (const letter of geohash) {
+        if (BASE32.indexOf(letter) === -1) {
+          error = "geohash cannot contain '" + letter + "'";
+        }
+      }
+    }
+
+    if (typeof error !== 'undefined' && !flag) {
+      throw new Error("Invalid geohash '" + geohash + "': " + error);
+    } else {
+      return !error;
+    }
   }
 }
