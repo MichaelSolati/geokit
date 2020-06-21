@@ -1,5 +1,14 @@
 {
   "projects": {
-    "default": "geokit-npm"
+    "default": "geofirestore"
+  },
+  "targets": {
+    "geofirestore": {
+      "hosting": {
+        "geokit": [
+          "geokit"
+        ]
+      }
+    }
   }
 }

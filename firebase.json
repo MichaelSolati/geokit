@@ -1,12 +1,7 @@
 {
   "hosting": {
-    "public": "docs",
     "predeploy": "npm run docs",
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
+    "target": "geokit",
+    "public": "docs"
   }
 }
