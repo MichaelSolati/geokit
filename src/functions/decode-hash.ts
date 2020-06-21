@@ -3,7 +3,7 @@ import {LatLngLiteral} from '../definitions';
 import {decimalChunk} from '../utils';
 
 /**
- * Decodes a Geohash into a LatLngLiteral.
+ * Decodes a Geohash into its Latitude and Longitude as a LatLngLiteral.
  * @param hash Geohash string.
  * @returns Coordinates to hash.
  */

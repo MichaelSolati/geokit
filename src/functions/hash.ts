@@ -1,7 +1,7 @@
 import {LatLngLiteral} from '../definitions';
 import {base32, getBit, validateCoordinates} from '../utils';
 /**
- * Get the geohash of a point.
+ * Generates Geohash of coordinates.
  * @param coordinates Coordinates to hash.
  * @param precision Precision of hash desired, defaults to 10.
  * @returns Geohash of point.

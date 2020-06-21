@@ -2,7 +2,7 @@ import {LatLngLiteral} from '../definitions';
 import {toRad, validateCoordinates} from '../utils';
 
 /**
- * Get the distance between two coordinates.
+ * Calculates the distance, in kilometers, between two coordinates.
  * @param start Starting coordinates.
  * @param end Ending coordinates.
  * @param unit Unit of distance returned, defaults to Km.
