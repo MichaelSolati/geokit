@@ -1,3 +1,13 @@
+### 1.1.0 (2020-06-22)
+
+##### New Features
+
+* **validateCoordinates:**  add function to validate `LatLngLiteral` ([43039bfb](https://github.com/MichaelSolati/geokit/commit/43039bfba5828f8c4bfe66e922e126df22c7e17c))
+
+##### Bug Fixes
+
+* **hash:**  rewrite `hash` function to address coordinates of 0, 0 ([52ab31ad](https://github.com/MichaelSolati/geokit/commit/52ab31ad8272c56af3c4e88c39b522d39b9c2af7))
+
 #### 1.0.1 (2020-06-21)
 
 ##### Build System / Dependencies
