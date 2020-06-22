@@ -1,6 +1,6 @@
 import {validateCoordinates} from './validate-coordinates';
 import {LatLngLiteral} from '../definitions';
-import {base32, getBit} from '../utils';
+import {base32} from '../utils';
 /**
  * Generates Geohash of coordinates.
  * @param coordinates Coordinates to hash.
@@ -9,22 +9,46 @@ import {base32, getBit} from '../utils';
  */
 export function hash(coordinates: LatLngLiteral, precision = 10): string {
   validateCoordinates(coordinates);
+  if (typeof precision === 'number' && !isNaN(precision)) {
+    if (precision <= 0) {
+      throw new Error('Precision must be greater than 0');
+    } else if (precision > 22) {
+      throw new Error('Precision cannot be greater than 22');
+    } else if (Math.round(precision) !== precision) {
+      throw new Error('Precision must be an integer');
+    }
+  } else {
+    throw new Error('Precision must be a number');
+  }
 
+  const latRng: [number, number] = [-90, 90];
+  const lngRng: [number, number] = [-180, 180];
   let hash = '';
-  const latRng: number[] = [-90, 90];
-  const lngRng: number[] = [-180, 180];
+  let hashVal = 0;
+  let bits = 0;
+  let even: number | boolean = 1;
 
   while (hash.length < precision) {
-    let temp = 0;
-    for (let i = 0; i < 5; i++) {
-      const even: boolean = (hash.length * 5 + i) % 2 === 0;
-      const coord: number = even ? coordinates.lng : coordinates.lat;
-      const range: number[] = even ? lngRng : latRng;
-      const middle: number = (range[0] + range[1]) / 2;
-      temp = (temp << 1) + getBit(coord, range);
-      coord > middle ? (range[0] = middle) : (range[1] = middle);
+    const val = even ? coordinates.lng : coordinates.lat;
+    const range = even ? lngRng : latRng;
+    const mid = (range[0] + range[1]) / 2;
+
+    if (val > mid) {
+      hashVal = (hashVal << 1) + 1;
+      range[0] = mid;
+    } else {
+      hashVal = (hashVal << 1) + 0;
+      range[1] = mid;
     }
-    hash += base32(temp);
+
+    even = !even;
+    if (bits < 4) {
+      bits++;
+    } else {
+      bits = 0;
+      hash += base32(hashVal);
+      hashVal = 0;
+    }
   }
 
   return hash;

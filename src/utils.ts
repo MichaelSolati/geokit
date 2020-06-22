@@ -1,5 +1,3 @@
-import {LatLngLiteral} from './definitions';
-
 // Characters used in location geohashes
 export const BASE32 = '0123456789bcdefghjkmnpqrstuvwxyz';
 
@@ -19,17 +17,6 @@ export function base32(value: number): string {
  */
 export function decimalChunk(value: string): number {
   return '0123456789bcdefghjkmnpqrstuvwxyz'.indexOf(value.toLowerCase());
-}
-
-/**
- * Determine if coordinate is greater than midle of range in a bit representation.
- * @param point Coordinates.
- * @param range Range of coordinates to check.
- * @returns Number representation if point is greater than the middle of the range.
- */
-export function getBit(point: number, range: number[]): number {
-  const middle: number = (range[0] + range[1]) / 2;
-  return middle > point ? 0 : 1;
 }
 
 /**
