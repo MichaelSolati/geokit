@@ -22,30 +22,18 @@ describe('distance()', () => {
   });
 
   it('Distance between 91, 0 and 0, 0 with should throw an Error', () => {
-    expect(() => distance({lat: 91, lng: 0}, {lat: 0, lng: 0})).to.throw(
-      undefined,
-      'Start coordinates: Your latitude is greater than 90°'
-    );
+    expect(() => distance({lat: 91, lng: 0}, {lat: 0, lng: 0})).to.throw();
   });
 
   it('Distance between 0, 0 and -91, 0 with should throw an Error', () => {
-    expect(() => distance({lat: 0, lng: 0}, {lat: -91, lng: 0})).to.throw(
-      undefined,
-      'End coordinates: Your latitude is less than -90°'
-    );
+    expect(() => distance({lat: 0, lng: 0}, {lat: -91, lng: 0})).to.throw();
   });
 
   it('Distance between 0, 181 and 0, 0 with should throw an Error', () => {
-    expect(() => distance({lat: 0, lng: 181}, {lat: 0, lng: 0})).to.throw(
-      undefined,
-      'Start coordinates: Your longitude is greater than 180°'
-    );
+    expect(() => distance({lat: 0, lng: 181}, {lat: 0, lng: 0})).to.throw();
   });
 
   it('Distance between 0, 0 and 0, -181 with should throw an Error', () => {
-    expect(() => distance({lat: 0, lng: 0}, {lat: 0, lng: -181})).to.throw(
-      undefined,
-      'End coordinates: Your longitude is less than -180°'
-    );
+    expect(() => distance({lat: 0, lng: 0}, {lat: 0, lng: -181})).to.throw();
   });
 });

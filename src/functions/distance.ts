@@ -1,5 +1,6 @@
+import {validateCoordinates} from './validate-coordinates';
 import {LatLngLiteral} from '../definitions';
-import {toRad, validateCoordinates} from '../utils';
+import {toRad} from '../utils';
 
 /**
  * Calculates the distance, in kilometers, between two coordinates.
@@ -13,14 +14,8 @@ export function distance(
   end: LatLngLiteral,
   unit = 'km'
 ): number {
-  const startValid: Error | void = validateCoordinates(start);
-  if (startValid instanceof Error) {
-    throw new Error('Start coordinates: ' + startValid.message);
-  }
-  const endValid: Error | void = validateCoordinates(end);
-  if (endValid instanceof Error) {
-    throw new Error('End coordinates: ' + endValid.message);
-  }
+  validateCoordinates(start);
+  validateCoordinates(end);
 
   const radius: number = unit.toLowerCase() === 'miles' ? 3963 : 6371;
   const dLat: number = toRad(end.lat - start.lat);

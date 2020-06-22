@@ -3,7 +3,7 @@ import {BASE32} from '../utils';
 /**
  * Validates a Geohash and returns a boolean if valid, or throws an error if invalid.
  *
- * @param geohash The geohash to be validated.
+ * @param geohash The Geohash to be validated.
  * @param flag Tells function to send up boolean if valid instead of throwing an error.
  * @returns Boolean if Geohash is valid.
  */

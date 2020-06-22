@@ -1,5 +1,6 @@
+import {validateCoordinates} from './validate-coordinates';
 import {LatLngLiteral} from '../definitions';
-import {base32, getBit, validateCoordinates} from '../utils';
+import {base32, getBit} from '../utils';
 /**
  * Generates Geohash of coordinates.
  * @param coordinates Coordinates to hash.
@@ -7,10 +8,7 @@ import {base32, getBit, validateCoordinates} from '../utils';
  * @returns Geohash of point.
  */
 export function hash(coordinates: LatLngLiteral, precision = 10): string {
-  const valid: Error | void = validateCoordinates(coordinates);
-  if (valid instanceof Error) {
-    throw valid;
-  }
+  validateCoordinates(coordinates);
 
   let hash = '';
   const latRng: number[] = [-90, 90];

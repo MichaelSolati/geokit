@@ -49,6 +49,20 @@ const hash = 'r3gx2f77b';
 const coordinates = geokit.decodeHash(hash); // coordinates === {lat: -33.86881113052368,  lng: 151.2093186378479}
 ```
 
+### `validateCoordinates(coordinates: LatLngLiteral): boolean`
+
+Validates coordinates and returns a boolean if valid, or throws an error if invalid.
+
+`coordinates` must be LatLngLiterals `{ lat: 0, lng: 0 }`.
+
+```TypeScript
+import * as geokit from 'geokit';
+
+const coordinates = {lat: 41.3083,  lng: -72.9279};
+
+const isValid = geokit.validateCoordinates(coordinates); // true
+```
+
 ### `validateHash(hash: string): LatLngLiteral`
 
 Validates a Geohash and returns a boolean if valid, or throws an error if invalid.

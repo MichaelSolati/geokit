@@ -14,9 +14,6 @@ describe('hash()', () => {
   });
 
   it('Geohash coordinates 91, 0 with should throw an Error', () => {
-    expect(() => hash({lat: 91, lng: 0})).to.throw(
-      undefined,
-      'Your latitude is greater than 90°'
-    );
+    expect(() => hash({lat: 91, lng: 0})).to.throw();
   });
 });

@@ -40,27 +40,3 @@ export function getBit(point: number, range: number[]): number {
 export function toRad(degrees: number): number {
   return (degrees * Math.PI) / 180;
 }
-
-/**
- * Validates user inputted coordinates.
- * @param coordinates User inputted coordinates.
- * @returns Error.
- */
-export function validateCoordinates(coordinates: LatLngLiteral): Error | void {
-  const error: string[] = [];
-  if (coordinates.lat > 90) {
-    error.push('Your latitude is greater than 90°');
-  }
-  if (coordinates.lat < -90) {
-    error.push('Your latitude is less than -90°');
-  }
-  if (coordinates.lng > 180) {
-    error.push('Your longitude is greater than 180°');
-  }
-  if (coordinates.lng < -180) {
-    error.push('Your longitude is less than -180°');
-  }
-  if (error.length !== 0) {
-    return new Error(error.join(' '));
-  }
-}
